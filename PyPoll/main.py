@@ -32,3 +32,35 @@ with open(csvpath, newline='') as csvfile:
         votes[i] = votes[i] + 1
     print(votes)
 
+winner = votes.index(max(votes))
+
+print("Election Results")
+print("-------------------------")
+print("Total Votes: " + str(total_votes))
+print("-------------------------")
+
+i = 0
+while i <= num_candidates - 1:
+    percentage = votes[i] / total_votes
+    print(str(candidates[i]) + ": " + str("{:.2%}".format(percentage)) + " (" + str(votes[i]) + ")")
+    i = i + 1
+
+print("------------------------")
+print("Winner: " + candidates[winner])
+print("------------------------")
+
+f = open("PyPoll_Analysis.txt", "w")
+f.write("Election Results\n")
+f.write("-------------------------\n")
+f.write("Total Votes: " + str(total_votes) + "\n")
+f.write("-------------------------\n")
+
+i = 0
+while i <= num_candidates - 1:
+    percentage = votes[i] / total_votes
+    f.write(str(candidates[i]) + ": " + str("{:.2%}".format(percentage)) + " (" + str(votes[i]) + ")\n")
+    i = i + 1
+
+f.write("------------------------\n")
+f.write("Winner: " + candidates[winner] +"\n")
+f.write("------------------------\n")
