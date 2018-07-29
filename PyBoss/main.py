@@ -85,6 +85,6 @@ with open(csvpath, newline='') as csvfile:
 
 new_csv = zip(empid,first,last,dob,ssn,state)
 
-with open("New_Employee_Data", "w") as f:
+with open("New_Employee_Data.csv", "w") as f:
     writer = csv.writer(f)
     writer.writerows(new_csv)
