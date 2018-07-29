@@ -14,7 +14,7 @@ with open(csvpath, newline='') as csvfile:
     greatest_increase = 0
     greatest_decrease = 0
 
-    for row in csvfile:
+    for row in csvreader:
         total_months = total_months + 1
         total_profit = float(row[1]) + total_profit
 
