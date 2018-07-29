@@ -6,7 +6,7 @@ csvpath = os.path.join('election_data.csv')
 with open(csvpath, newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
 
-    header = next(csvfile,None)
+    next(csvfile,None)
 
     candidates = []
 
@@ -19,7 +19,16 @@ with open(csvpath, newline='') as csvfile:
             pass
         else:
             candidates.append(rows[2])
-
+    
     num_candidates = len(candidates)
 
     votes = [0] * num_candidates
+
+    csvfile.seek(0)
+    next(csvfile,None)
+
+    for rows in csvreader:
+        i = candidates.index(rows[2])
+        votes[i] = votes[i] + 1
+    print(votes)
+
