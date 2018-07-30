@@ -38,13 +38,13 @@ with open(csvpath, newline='') as csvfile:
         
         previous = float(row[1])
 
-average = sum(monthly_change) / len(monthly_change)
+average = round(sum(monthly_change) / len(monthly_change),2)
 
 print("Financial Analysis")
 print("------------------------------")
 print("Total Months: " + str(total_months))
 print("Total: " + str(total_profit))
-print("Average: " + str(average))
+print("Average: $" + str(average))
 print("Greatest Increase in Profits: " + increase_date + " $" + str(greatest_increase))
 print("Greatest Decrease in Profits: " + decrease_date + " $(" + str(greatest_decrease) + ")")
 
