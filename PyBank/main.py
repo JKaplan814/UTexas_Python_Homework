@@ -6,26 +6,39 @@ csvpath = os.path.join('budget_data.csv')
 with open(csvpath, newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
 
+
     header=next(csvfile,None)
 
+    monthly_change = []
     total_months = 0
     total_profit = 0
 
     greatest_increase = 0
     greatest_decrease = 0
 
+
+    previous = 0
     for row in csvreader:
+        current = float(row[1])
+
+        if previous == 0:
+            pass
+        else:
+            monthly_change.append(current - previous)
+
         total_months = total_months + 1
         total_profit = float(row[1]) + total_profit
 
-        if float(row[1]) > greatest_increase:
-            greatest_increase = float(row[1])
+        if (current - previous) > greatest_increase:
+            greatest_increase = current - previous
             increase_date = row[0]
-        elif float(row[1]) < greatest_decrease:
-            greatest_decrease = float(row[1])
+        elif current - previous < greatest_decrease:
+            greatest_decrease = current - previous
             decrease_date = row[0]
+        
+        previous = float(row[1])
 
-average = round(total_profit / total_months,2)
+average = sum(monthly_change) / len(monthly_change)
 
 print("Financial Analysis")
 print("------------------------------")
